@@ -1,20 +1,17 @@
 <!--
    index.html
-   
-   
 -->
+{% extends "album/layout.html"%}
 
-<!DOCTYPE html >
-<html lang="ru">
+{% block content%}
+   <h1><i>Тело страницы.</i></h1>
+   <!--
+   {% include('album/test.html') %}
+   альтернативная загрузка html файла
+   -->
+{%endblock%}
 
-<head>
-	<title>Главная страница</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	
-</head>
+{% block title %}Главная страница{% endblock %}
 
-<body>
-	<h1><i>Тело страницы.</i></h1>
-</body>
 
-</html>
+
