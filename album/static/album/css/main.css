@@ -1,3 +1,11 @@
 body{
   background: silver;
 }
+/* пкм не активна на фото */
+img {
+    pointer-events: none;
+}
+.link {
+    color: blue; /* Исходный цвет */
+    text-decoration: none;
+}

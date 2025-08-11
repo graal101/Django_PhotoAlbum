@@ -4,10 +4,15 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request, 'album/index.html' )
+    data = {'title':"Фотоальбом", 'text':'Я создал этот фотоальбом, чтобы запечатлеть и сохранить самые \
+                                          важные моменты моей <br> и жизни окружающих меня.\
+                                          Каждая фотография в этом альбоме — это не просто изображение,\
+                                          <br> а история, полная эмоций и воспоминаний.'}
+    return render(request, 'album/index.html', data )
 
 def monochrome(request):
-    return render(request, 'album/monochrome.html' )
+    data = {'title': 'Ч/Б архив'}
+    return render(request, 'album/monochrome.html', data )
 
 '''
 def index(request):

@@ -20,15 +20,15 @@
 
 <title>Bootstrap</title>
 
-<img src="static/album/img/images.svg" alt="Icon description" width="24" height="24">
+<img src="{% static 'album/img/images.svg' %}" alt="Главная страница." width="24" height="24">
    &nbsp;
     <span class="fs-4">Макет фотоальбома</span>
  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
- <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Главная</a>
+ <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'index' %}">Главная</a>
  <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Поездки</a>
  <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Кот</a>
  <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Дача</a>
- <a class="py-2 link-body-emphasis text-decoration-none" href="#">Ч/Б архив</a> 
+ <a class="py-2 link-body-emphasis text-decoration-none" href="{% url 'monochrome' %}">Ч/Б архив</a> 
 
 </nav> 
 

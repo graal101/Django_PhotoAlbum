@@ -2,13 +2,18 @@
    index.html
 -->
 {% extends "album/layout.html"%}
-
+{% load static %}
 {% block content%}
-   <h1><i>Тело страницы.</i></h1>
+   <p><q><i>{{text|safe}}</i></q></p> <!--используется фильтр safe для перноса строк <br>-->
+   <div>
+     <img src="{% static 'album/img/group.webp' %}" alt="Главная страница." width='50%'>
+   </div>
+   
    
 {%endblock%}
 
-{% block title %}Фотоальбом{% endblock %}
+
+{% block title %}{{title}}{% endblock %}
 
 
 
