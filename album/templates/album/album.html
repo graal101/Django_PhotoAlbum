@@ -1,0 +1,21 @@
+<!--
+   album.html
+-->
+
+{% extends "album/layout.html"%}
+{% load static %}
+
+{% block content%}
+ <H1>{{title}}</H1>
+  <dl>
+      {% for item in photo %}
+      <div class="container">
+        <dt><img  title='{{ item }}' src='{{ item }}' alt='{{ item }}'
+        style="width: 700px; height: auto; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); margin: 20px;"></dt>
+      </div>
+      {% endfor %}
+  </dl>
+  
+{%endblock%}
+
+{% block title %}{{title}}{% endblock %}
