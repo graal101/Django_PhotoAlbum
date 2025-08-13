@@ -1,9 +1,22 @@
 from django.shortcuts import render
-#from django.http import HttpResponse
+from django.http import HttpResponse
+from .models import Visitors
+import requests # Доустанавливается
 
-
+def get_client_ip(request):
+    x_forwarded_for = request.headers.get('X-Forwarded-For')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]  # Получаем первый IP из списка
+    else:
+        ip = request.META.get('REMOTE_ADDR')  # Если заголовок отсутствует, используем REMOTE_ADDR
+    return ip
+    
 # Create your views here.
 def index(request):
+    ip = get_client_ip(request)
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    visit = Visitors(ip=ip, user_agent=user_agent)
+    visit.save()
     data = {'title':"Фотоальбом", 'text':'Я создал этот фотоальбом, чтобы запечатлеть и сохранить самые \
                                           важные моменты моей <br> и жизни окружающих меня.\
                                           Каждая фотография в этом альбоме — это не просто изображение,\

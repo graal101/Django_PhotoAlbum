@@ -8,4 +8,5 @@ img {
 .link {
     color: blue; /* Исходный цвет */
     text-decoration: none;
+    cursor: pointer;
 }
