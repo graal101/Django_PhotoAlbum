@@ -5,9 +5,11 @@
 {% load static %}
 {% block content%}
    <p><q><i>{{text|safe}}</i></q></p> <!--используется фильтр safe для перноса строк <br>-->
-   <div>
-     <img src="{% static 'album/img/group.webp' %}" alt="Главная страница." width='50%'>
-   </div>
+          <div  class="container" >
+            <div class="photo-frame">
+               <img src="{% static 'album/img/group.webp' %}" alt="Титульное фото.">
+             </div>
+           </div>
    
    
 {%endblock%}
