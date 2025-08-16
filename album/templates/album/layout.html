@@ -11,22 +11,22 @@
    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}{% endblock %}</title>
-   
+   <link rel="icon" href="{% static 'album/favicon.png' %}" type="image/x-icon">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" >
    <link rel="stylesheet" href="{% static 'album/css/main.css' %}" >
    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
    <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img">
 
-<title>Bootstrap</title>
+   <!--<title></title>-->
 
 <img src="{% static 'album/img/images.svg' %}" alt="Главная страница." width="24" height="24">
    &nbsp;
-    <span class="fs-4">Макет фотоальбома</span>
+    <span class="fs-4">Мини фотоальбом</span>
  <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
  <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'index' %}">Главная</a>
- <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Поездки</a>
- <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'cat' %}">Кот</a>
+ <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'trip' %}">Поездки</a>
+ <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'kat' %}">Кот</a>
  <a  class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'dacha' %}">Дача</a>
  <a  class="py-2 link-body-emphasis text-decoration-none" href="{% url 'monochrome' %}">Ч/Б архив</a> 
 
@@ -48,7 +48,7 @@
     <div class="container">
       <p>&copy; 2025 <a href='mailto:graal101@mail.ru'>graal101@mail.ru</a>
        PhotoAlbum. All rights reserved. </p>
-       <p><i>"Alpha release of the project on Django."</i></p>
+      <!-- <p><i>"Alpha release of the project on Django."</i></p> -->
       <p><a href="#">Наверх</a></p>
    </div>
  </footer> 

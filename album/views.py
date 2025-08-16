@@ -1,8 +1,18 @@
+import os
 from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse
 from .models import Visitors
 import requests # Доустанавливается
 
+def load_image_paths(directory):
+    """Загрузка путь изображений."""
+    image_paths = []
+    for filename in os.listdir(directory):
+        if filename.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG')):  # Укажите нужные форматы изображений
+            image_paths.append(os.path.join(directory, filename))
+    return image_paths
+    
 def get_client_ip(request):
     x_forwarded_for = request.headers.get('X-Forwarded-For')
     if x_forwarded_for:
@@ -10,6 +20,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')  # Если заголовок отсутствует, используем REMOTE_ADDR
     return ip
+
     
 # Create your views here.
 def index(request):
@@ -24,24 +35,38 @@ def index(request):
     return render(request, 'album/index.html', data )
 
 def monochrome(request):
-    data = {'title': 'Ч/Б архив'}
+    lst = []
+    data = {'title': 'Ч/Б архив', 'photo':lst}
     return render(request, 'album/monochrome.html', data )
     
 def dacha(request):
-    lst = ['https://na-dache.pro/uploads/posts/2021-04/1619788199_14-p-na-uchastke-leto-na-dache-14.jpg',
-           'https://pro-dachnikov.com/uploads/posts/2021-07/1627055128_30-p-dachnie-uchastki-obichnoi-dachi-30.jpg',
-            'https://design-homes.ru/images/galery/2376/besedka-dlya-dachi_5f43be4b472f0.jpg',]
-            
-    data = {'title': 'Фото дача', 'photo':lst}
+    trip_dir = os.path.join(settings.BASE_DIR, 'album','static', 'album', 'img', 'base', 'fathenda')
+    # Проверяем, существует ли директория
+    if not os.path.exists(trip_dir):
+        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
+         'photos': [], 'error': 'Директория не найдена.'})
+    lst1 = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
+    data = {'title': 'Фото кота', 'photo':lst1, 'num':1}  
     return render(request, 'album/album.html', data )
     
-def cat(request):
-    lst = ['https://c.wallhere.com/photos/ba/b3/1920x1270_px_blue_cat_eyes_pose-1912453.jpg',
-           'https://pichold.ru/wp-content/uploads/2018/10/7ea9f65adc25bc7b0c65838809966e84.jpg',
-            'https://i.ytimg.com/vi/7LPC2_A7S4s/maxresdefault.jpg',
-            'https://www.1zoom.ru/big2/613/322342-alexfas01.jpg',]
-            
-    data = {'title': 'Фото кота', 'photo':lst}        
+def kat(request):
+    trip_dir = os.path.join(settings.BASE_DIR, 'album','static', 'album', 'img', 'base', 'cat')
+    # Проверяем, существует ли директория
+    if not os.path.exists(trip_dir):
+        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
+         'photos': [], 'error': 'Директория не найдена.'})
+    lst1 = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
+    data = {'title': 'Фото кота', 'photo':lst1, 'num':2}        
+    return render(request, 'album/album.html', data)
+    
+def trip(request):
+    trip_dir = os.path.join(settings.BASE_DIR, 'album','static', 'album', 'img', 'base', 'trip')
+    # Проверяем, существует ли директория
+    if not os.path.exists(trip_dir):
+        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
+         'photos': [], 'error': 'Директория не найдена.'})
+    lst = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
+    data = {'title': 'Фото поездок', 'photo':lst, 'num':3}        
     return render(request, 'album/album.html', data )
 
 '''

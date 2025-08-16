@@ -11,9 +11,16 @@
       {% for item in photo %}
       <div class="container">
         <div class="photo-frame" style="margin: 20px;">
-          <dt><img  title='{{ item }}' src='{{ item }}' alt='{{ item }}'></dt>
+          {% if num == 3 %}
+            <dt><img  src="{% static 'album/img/base/trip/' %}{{ item }}" alt='{{ item }}'></dt>
+          {% elif num == 2 %}
+            <dt><img  src="{% static 'album/img/base/cat/' %}{{ item }}" alt='{{ item }}'></dt>
+          {% elif num == 1 %}
+            <dt><img  src="{% static 'album/img/base/fathenda/' %}{{ item }}" alt='{{ item }}'></dt>
+          {% endif %}
         </div>
       </div>
+      
       {% endfor %}
   </dl>
   

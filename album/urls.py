@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('monochrome/', views.monochrome, name='monochrome'),
-    path('dacha', views.dacha, name='dacha'),
-    path('kat', views.cat, name='cat' ),
+    path('dacha/', views.dacha, name='dacha'),
+    path('kat/', views.kat, name='kat' ),
+    path('trip/', views.trip, name='trip')
 ]
