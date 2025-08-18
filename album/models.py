@@ -15,3 +15,11 @@ class Visitors(models.Model):
     def __str__(self):
         return f"Посещение с {self.ip}  в {self.visittime}"
         
+        
+class UplPict(models.Model):
+    name = models.CharField(max_length=50)
+    UpPict_Img = models.ImageField(upload_to='images/')
+    
+    def __str__(self):
+        return f"Загружено: {self.name}"
+        

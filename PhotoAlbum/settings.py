@@ -119,7 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 # URL для статических файлов
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Для загрузки файлов upload/
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Директории, где Django будет искать статические файлы
 STATICFILES_DIRS = [
