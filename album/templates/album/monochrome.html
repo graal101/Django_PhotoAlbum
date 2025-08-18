@@ -4,6 +4,16 @@
 {% extends "album/layout.html"%}
 
 {% block content%}
+   <div style="float: left;">
+     <table cellpadding="10" align="right">
+       <tr>
+         <td> <a class="custom-link" href="#">Домашний Архив</a></td>
+         <td> <a <a class="custom-link" href="#">Школьный Архив</a></td>
+         <td><a <a class="custom-link" href="{% url 'index' %}">Вернуться на главную страницу</a></td>
+       </tr>
+     </table>
+   </div>
+   <br><br><br>
    <div class="container">
    <h1>Sorry..</h1>
       <p></p><i>По финансово/техническим проблемам <br>
