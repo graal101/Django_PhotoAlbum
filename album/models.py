@@ -17,8 +17,12 @@ class Visitors(models.Model):
         
         
 class UplPict(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=150)
     UpPict_Img = models.ImageField(upload_to='images/')
+    
+    class Meta:
+        verbose_name = 'Загрузка'  # Единственное название
+        verbose_name_plural = 'Загрузки'  # Множественное название
     
     def __str__(self):
         return f"Загружено: {self.name}"

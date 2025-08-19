@@ -91,7 +91,7 @@ def upload_img(request):
         if form.is_valid():
             form.save()
             # return redirect('success')
-            return HttpResponse('Successfully uploaded!')
+            return HttpResponse('<h1>Успешно загружено!..</h1>')
     else:
         form = UplPictForm()
     return render(request, 'album/load_jpg.html', {'form': form})
