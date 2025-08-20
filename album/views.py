@@ -20,6 +20,14 @@ def load_image_paths(directory):
             image_paths.append(os.path.join(directory, filename))
     return image_paths
 
+def referer(request):
+    """Получения реферера."""
+    referer = request.META.get('HTTP_REFERER')
+    
+    if referer:
+        return referer
+    else:
+        return 'Неопределен'
 
 def get_client_ip(request):
     """Получение юзер-агента посетителя."""
@@ -35,7 +43,8 @@ def index(request):
     """Главная страница."""
     ip = get_client_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT')
-    visit = Visitors(ip=ip, user_agent=user_agent)
+    ref = referer(request)
+    visit = Visitors(ip=ip, user_agent=user_agent, ref = ref)
     visit.save()
     data = {'title': 'Фотоальбом', 'text': 'Я создал этот фотоальбом, чтобы запечатлеть и сохранить самые \
                                           важные моменты моей <br> и жизни окружающих меня.\
