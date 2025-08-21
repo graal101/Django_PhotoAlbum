@@ -11,34 +11,7 @@ import requests  # Доустанавливается
 from .models import Visitors
 from .models import UplPict
 
-
-def load_image_paths(directory):
-    """Загрузка путь изображений."""
-    image_paths = []
-    for filename in os.listdir(directory):
-        if filename.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG')):
-            image_paths.append(os.path.join(directory, filename))
-    return image_paths
-
-def referer(request):
-    """Получения реферера."""
-    referer = request.META.get('HTTP_REFERER')
     
-    if referer:
-        return referer
-    else:
-        return 'Неопределен'
-
-def get_client_ip(request):
-    """Получение юзер-агента посетителя."""
-    x_forwarded_for = request.headers.get('X-Forwarded-For')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]  # Получаем первый IP из списка
-    else:
-        ip = request.META.get('REMOTE_ADDR')  # Если заголовок отсутствует, используем REMOTE_ADDR
-    return ip
-
-
 def index(request):
     """Главная страница."""
     ip = get_client_ip(request)
@@ -62,37 +35,46 @@ def monochrome(request):
 
 def dacha(request):
     """Страница о даче."""
-    trip_dir = os.path.join(settings.BASE_DIR, 'album', 'static', 'album', 'img', 'base', 'fathenda')
-    if not os.path.exists(trip_dir):
-        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
-                      'photos': [], 'error': 'Директория не найдена.'})
-    lst1 = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
-    data = {'title': 'Фото дачи', 'photo': lst1, 'num': 1}
-    return render(request, 'album/album.html', data)
+    return render(request, 'album/album.html', sample('Фото дачи.', 'fathenda'))
 
 
 def kat(request):
     """Страница о коте."""
-    trip_dir = os.path.join(settings.BASE_DIR, 'album', 'static', 'album', 'img', 'base', 'cat')
-    if not os.path.exists(trip_dir):
-        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
-                      'photos': [], 'error': 'Директория не найдена.'})
-    lst1 = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
-    data = {'title': 'Фото кота', 'photo': lst1, 'num': 2}
-    return render(request, 'album/album.html', data)
+    return render(request, 'album/album.html', sample('Фото кота.', 'cat'))
 
 
 def trip(request):
     """Страница о поездках."""
-    trip_dir = os.path.join(settings.BASE_DIR, 'album', 'static', 'album', 'img', 'base', 'trip')
-    if not os.path.exists(trip_dir):
-        return render(request, 'album/album.html', {'title': f'Ошибка директории - {trip_dir}',
-                      'photos': [], 'error': 'Директория не найдена.'})
-    lst = [f for f in os.listdir(trip_dir) if f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.JPG'))]
-    data = {'title': 'Фото поездок', 'photo': lst, 'num': 3}
-    return render(request, 'album/album.html', data)
+    return render(request, 'album/album.html', sample('Фото поездок', 'trip'))
 
+  # =============================================Functions=======================================================
+def referer(request):
+    """Получения реферера."""
+    referer = request.META.get('HTTP_REFERER')
+    
+    if referer:
+        return referer
+    else:
+        return 'Неопределен'
 
+def get_client_ip(request):
+    """Получение юзер-агента посетителя."""
+    x_forwarded_for = request.headers.get('X-Forwarded-For')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]  # Получаем первый IP из списка
+    else:
+        ip = request.META.get('REMOTE_ADDR')  # Если заголовок отсутствует, используем REMOTE_ADDR
+    return ip
+
+def sample(h1: str, smp: str) -> dict:
+    """Функция для выборки из модели картинок.
+       :smp: слово для фильтрации в бд.
+       :h1: заголовок посылаемый в заголовок страницы. 
+    """
+    instances = UplPict.objects.filter(name=smp)
+    lst = [instance.UpPict_Img.name for instance in instances if instance.UpPict_Img]
+    return {'title': h1, 'photo': lst, 'MEDIA_URL': settings.MEDIA_URL}
+    
 def upload_img(request):
     """Загрузка файла на сервер."""
     if request.method == 'POST':
@@ -104,3 +86,5 @@ def upload_img(request):
     else:
         form = UplPictForm()
     return render(request, 'album/load_jpg.html', {'form': form})
+
+  # ==========================================================================================================

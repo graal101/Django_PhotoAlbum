@@ -5,19 +5,17 @@
 {% extends "album/layout.html"%}
 {% load static %}
 
+
 {% block content%}
  <H1>{{title}}</H1>
   <dl>
       {% for item in photo %}
       <div class="container">
         <div class="photo-frame" style="margin: 20px;">
-          {% if num == 3 %}
-            <dt><img  src="{% static 'album/img/base/trip/' %}{{item}}" alt='{{ item }}' loading="lazy"></dt>
-          {% elif num == 2 %}
-            <dt><img  src="{% static 'album/img/base/cat/' %}{{item}}" alt='{{ item }}' loading="lazy"></dt>
-          {% elif num == 1 %}
-            <dt><img  src="{% static 'album/img/base/fathenda/' %}{{item}}" alt='{{ item }}' loading="lazy"></dt>
-          {% endif %}
+          
+           <img src="{{ MEDIA_URL }}{{ item }}" alt="{{ item }}" loading="lazy">
+          
+          
         </div>
       </div>
       
