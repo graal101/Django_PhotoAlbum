@@ -18,8 +18,6 @@
    <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img">
 
-   <!--<title></title>-->
-
 <img src="{% static 'album/img/images.svg' %}" alt="Главная страница." width="24" height="24">
    &nbsp;
     <span class="fs-4">Мини фотоальбом</span>
@@ -41,15 +39,23 @@
 	{% block content %}
    {% endblock %}
    </div>
-   
+   <br><br>
+ <div  class="container" > <a style="color: black;" href="#">Наверх</a></p>  </div>
 </body>
+
 <footer class="text-body-secondary py-5">
    <hr>
-    <div class="container">
-      <p>&copy; 2025 <a href='mailto:graal101@mail.ru'>graal101@mail.ru</a>
-       PhotoAlbum. All rights reserved. </p>
-      <!-- <p><i>"Alpha release of the project on Django."</i></p> -->
-      <p><a href="#">Наверх</a></p>
-   </div>
+   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+      
+       <div class="container">
+         <p>&copy; 2025 <a href='mailto:graal101@mail.ru'>graal101@mail.ru</a>
+          PhotoAlbum. All rights reserved. </p>
+      </div>
+      
+      <div style="margin-left: 20px;"> 
+         <i><a   href="{% url 'feedback' %}">Сообщение админу.</a> </i>
+      </div>
+      
+   </nav>
  </footer> 
 </html>

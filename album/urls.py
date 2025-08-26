@@ -11,7 +11,9 @@ urlpatterns = [
     path('dacha/', views.dacha, name='dacha'),
     path('kat/', views.kat, name='kat'),
     path('trip/', views.trip, name='trip'),
+    path('feedback/', views.feedback, name='feedback'),
     path('upload_img/', views.upload_img, name='upload_img')
+    
 ]
 
 if settings.DEBUG:  # Добавлено при подк. загрузки картинок

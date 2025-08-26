@@ -46,7 +46,11 @@ def kat(request):
 def trip(request):
     """Страница о поездках."""
     return render(request, 'album/album.html', sample('Фото поездок', 'trip'))
-
+    
+    
+def feedback(request):
+    """Обратная связь с админом."""
+    return render(request, 'album/feedback.html', {'title':'Связаться с админом.'})
   # =============================================Functions=======================================================
 def referer(request):
     """Получения реферера."""
