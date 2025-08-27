@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-# Create your models here.
+
 class Visitors(models.Model):
     ip = models.CharField('IP', max_length=20, null=True, blank=True)  # IP-адрес
     user_agent = models.TextField('User_Agent', max_length=200, null=True, blank=True)  # User-Agent
@@ -18,6 +18,7 @@ class Visitors(models.Model):
         
         
 class UplPict(models.Model):
+    """Store photo in file system with path in db."""
     name = models.CharField(max_length=150)
     UpPict_Img = models.ImageField(upload_to='images/')
     
@@ -27,4 +28,19 @@ class UplPict(models.Model):
     
     def __str__(self):
         return f"Загружено: {self.name}"
+        
+        
+class MonArch(models.Model):
+    """Test store photo in blobs."""
+    ids = models.AutoField(primary_key=True)
+    category = models.CharField(max_length=50)
+    text = models.TextField()
+    photo = models.BinaryField()
+     
+    class Meta:
+        verbose_name = 'Архив'
+        verbose_name_plural = 'Архивы'
+         
+    def __str__(self):
+        return f'Архив {category}'
         
