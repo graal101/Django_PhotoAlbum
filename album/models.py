@@ -30,17 +30,3 @@ class UplPict(models.Model):
         return f"Загружено: {self.name}"
         
         
-class MonArch(models.Model):
-    """Test store photo in blobs."""
-    ids = models.AutoField(primary_key=True)
-    category = models.CharField(max_length=50)
-    text = models.TextField()
-    photo = models.BinaryField()
-     
-    class Meta:
-        verbose_name = 'Архив'
-        verbose_name_plural = 'Архивы'
-         
-    def __str__(self):
-        return f'Архив {category}'
-        
