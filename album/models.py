@@ -20,6 +20,7 @@ class Visitors(models.Model):
 class UplPict(models.Model):
     """Store photo in file system with path in db."""
     name = models.CharField(max_length=150)
+    recent = models.CharField(max_length=150, blank=True, null=True)
     UpPict_Img = models.ImageField(upload_to='images/')
     
     class Meta:

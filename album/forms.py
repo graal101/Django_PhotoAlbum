@@ -7,4 +7,4 @@ from .models import UplPict
 class UplPictForm(forms.ModelForm):
     class Meta:
         model = UplPict
-        fields = ['name', 'UpPict_Img']
+        fields = ['name', 'recent', 'UpPict_Img']
