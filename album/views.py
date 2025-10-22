@@ -74,6 +74,8 @@ def sample(h1: str, smp: str) -> dict:
     """
     instances = UplPict.objects.filter(name=smp)
     lst = [instance.UpPict_Img.name for instance in instances if instance.UpPict_Img]
+    lst_fig = [instance.recent for instance in instances if instance.recent]
+    print(lst_fig)
     return {'title': h1, 'photo': lst, 'MEDIA_URL': settings.MEDIA_URL}
     
 def upload_img(request):

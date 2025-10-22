@@ -7,20 +7,18 @@
 
 
 {% block content%}
- <H1>{{title}}</H1>
-  <dl>
+ <h1>{{title}}</h1>
       {% for item in photo %}
       <div class="container">
+        <figure>
         <div class="photo-frame" style="margin: 20px;">
-          
            <img src="{{ MEDIA_URL }}{{ item }}" alt="{{ item }}" loading="lazy">
-          
-          
+            <figcaption>Описание фото.</figcaption>
+        </figure>
         </div>
       </div>
       
       {% endfor %}
-  </dl>
   
 {%endblock%}
 
