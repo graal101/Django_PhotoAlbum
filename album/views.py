@@ -73,10 +73,12 @@ def sample(h1: str, smp: str) -> dict:
        :h1: заголовок посылаемый в заголовок страницы. 
     """
     instances = UplPict.objects.filter(name=smp)
+    # Путь где размещено фото
     lst = [instance.UpPict_Img.name for instance in instances if instance.UpPict_Img]
+    # Описание фото
     lst_fig = [instance.recent for instance in instances if instance.recent]
-    print(lst_fig)
-    return {'title': h1, 'photo': lst, 'MEDIA_URL': settings.MEDIA_URL}
+    dct = dict(zip(lst, lst_fig))
+    return {'title': h1, 'photo': dct, 'MEDIA_URL': settings.MEDIA_URL}
     
 def upload_img(request):
     """Загрузка файла на сервер."""
