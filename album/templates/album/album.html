@@ -18,15 +18,49 @@
             <p class="card-text">{{value}}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Посмотреть</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Скачать на устройство.</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="openModal('{{ MEDIA_URL }}{{ key }}', '{{ value|escapejs }}')">Посмотреть</button>
+                    <!--<button type="button" class="btn btn-sm btn-outline-secondary">Скачать на устройство.</button>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
       {% endfor %}
-</div>  
+</div>
+ 
+<!-- Модальное окно -->
+<div class="modal" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel"></h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>-->
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" class="img-fluid" src="" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(imageSrc, description) {
+    document.getElementById('modalImage').src = imageSrc; // Устанавливаем источник изображения
+    document.getElementById('imageModalLabel').innerText = description; // Устанавливаем описание в заголовке
+    document.getElementById('imageModal').style.display = 'flex'; // Показываем модальное окно
+}
+
+    function closeModal() {
+        // Скрываем модальное окно
+        document.getElementById('imageModal').style.display = 'none';
+    }
+</script>
+
 {%endblock%}
 
 {% block title %}{{title}}{% endblock %}
